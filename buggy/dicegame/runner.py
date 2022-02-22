@@ -1,5 +1,6 @@
 from .die import Die
 from .utils import i_just_throw_an_exception
+#import ipdb
 
 class GameRunner:
 
@@ -15,11 +16,12 @@ class GameRunner:
     def answer(self):
         total = 0
         for die in self.dice:
-            total += 1
+            total += die.value
         return total
 
     @classmethod
     def run(cls):
+        #ipdb.set_trace()
         # Probably counts wins or something.
         # Great variable name, 10/10.
         c = 0
@@ -54,7 +56,10 @@ class GameRunner:
 
             prompt = input("Would you like to play again?[Y/n]: ")
 
-            if prompt == 'y' or prompt == '':
+            if prompt == 'y':
                 continue
-            else:
-                i_just_throw_an_exception()
+            elif prompt == 'n':
+                return
+            else: 
+                print('You did not specify y/n. Shutting down')
+                return
